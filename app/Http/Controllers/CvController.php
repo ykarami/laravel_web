@@ -8,7 +8,8 @@ use App\Models\Cv;
 class CvController extends Controller
 {
     public function index(){
-        
+        $listcv = Cv::all();
+        return view('cv.index', ['cvs'=>$listcv]);
     }
 
     public function create(){
@@ -22,6 +23,8 @@ class CvController extends Controller
         $cv->presentation = $request->input('presentation');
 
         $cv->save();
+
+        return redirect('cvs');
     }
 
     public function edit(){
